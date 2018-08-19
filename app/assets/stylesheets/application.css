@@ -113,12 +113,7 @@ input[type="password"] {
     }
 
 
-input[type="text_area"] {
-        width: 300px;
-        height: 40px;
-    }
-
-
 input[type="file"] {
-        text-align: center
+        text-align: center;
+        display: inline;
     }

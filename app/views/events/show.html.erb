@@ -4,7 +4,7 @@
       <%= image_tag @event.user.icon_image %>
       <div class="media-body">
       <h1 class="media-heading">
-        <%= link_to @event.user.name , user_path(current_user.id)%>
+        <%= @event.user.name %>
       </h1>
       </div>
     </div>
@@ -56,9 +56,13 @@
   </div>
     
     <% if @event.user == current_user %>
+      <h4>
         <%= link_to '編集', edit_event_path(@event.id), class: 'far fa-edit' %>
+      </h4>
+      <h4>
         <%= link_to '削除', event_path(@event.id), method: :delete,
         data: { confirm: '本当に削除していいですか？' }, class: 'far fa-trash-alt'%>
+      </h4>
     <% end %>
     
     <% unless @event.user == current_user %>

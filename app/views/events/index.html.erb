@@ -23,7 +23,7 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td>ユーザー名:<%= link_to event.user.name  , user_path(current_user.id)%></td>
+        <td>ユーザー名:<%= event.user.name %></td>
         <td>タイトル:<%= link_to event.title , event_path(event.id)%></td>
         <td>地名:<%= event.area %></td>
         <td>タグ:<%= event.etag_list %></td>
@@ -45,7 +45,7 @@ style=" height:250px; background:white;">
             <div class="media-body">
               <div class="e-user-name">
                 <h1>
-                <%= link_to event.user.name , user_path(current_user.id)%>
+                <%= event.user.name %>
                 </h1>
               </div>
               <div class="e_area">

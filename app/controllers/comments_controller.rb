@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-  #after_action :create_notifications, only: [:create] 
   # GET /comments
   # GET /comments.json
   def index
@@ -72,9 +71,4 @@ class CommentsController < ApplicationController
       params.require(:comment).permit(:user_id, :event_id, :body)
     end
     
-    #def create_notifications 
-      #return if @event.user.id == current_user.id 
-      #Notification.create(user_id: @event.user.id,notified_by_id: current_user.id, event_id: @event.id, 
-        #notified_type: 'コメント') 
-    #end 
 end

@@ -3,8 +3,6 @@ class EventsController < ApplicationController
   before_action :login_check, only: [:new, :show, :edit, :update, :destroy]
 
   def confirm
-    #タグ用
-    #@event.tag_list = params[:event][:tag_list]
     @event = Event.new(event_params)
     
     @event.user_id = current_user.id
@@ -12,10 +10,7 @@ class EventsController < ApplicationController
   end
 
   def index
-    #@events = Event.all
     @q = Event.ransack(params[:q])
-    #タグ用
-    #@tags = ActsAsTaggableOn::Tag.all
     @events = @q.result
   end
   
@@ -24,14 +19,6 @@ class EventsController < ApplicationController
   def show
     @favorite = current_user.favorites.find_by(event_id: @event.id)
     @join = current_user.joins.find_by(event_id: @event.id)
-    #@comment=current_user.comments.find_by(event_id: @event.id)
-    #@user = User.find_by(id: @event.user_id)
-    #@event = Event.find(params[:id])
-    #タグ用
-    #@tag =  ActsAsTaggableOn::Tag.find(params[:id])
-    #@events = Hashmodel.tagged_with(@tag.name)
-    #コメント用
-    #@comment = Comment.new
     @comments = @event.comments.includes(:user).all
     @comment  = @event.comments.build(user_id: current_user.id) if current_user
   end
@@ -60,8 +47,6 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    #タグ用
-    #@event.tag_list = params[:event][:tag_list]
     @event.user_id = current_user.id
     @event.image.retrieve_from_cache!  params[:cache][:image]
     if @event.save
