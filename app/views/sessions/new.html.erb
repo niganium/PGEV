@@ -1,0 +1,19 @@
+<div class="loginbox">
+  <img src="/assets/avater.png" class="img-responsive avater"> 
+  <h1>Login</h1>
+  <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+
+  <div class="session-email">
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+
+  <div class="session-pass">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  <div class="session-submit">
+    <%= f.submit "Log in" %>
+  </div>
+</div>
+<% end %>

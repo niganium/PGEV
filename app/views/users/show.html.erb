@@ -1,0 +1,60 @@
+<div class="text-center">
+<h4 class="user_infomation"><%= @user.name %></h4>
+<div class="user_img">
+  <%= image_tag @user.icon_image %>
+</div>
+<p class="user_infomation">email: <%= @user.email %></p>
+<h3 class="user_infomation">
+  <%= link_to 'ユーザー情報を編集', edit_user_path(@user.id), class: 'far fa-edit' %>
+</h3>
+
+<div >
+  <table class=" table-hover" border="1" >
+  <h3>お気に入りイベント一覧</h3>
+  <% if !@favorites_events.nil? %>
+    <% @favorites_events.each do |favorites_event| %>
+    <div class="text-center">
+      <tr>
+        <th colspan="2">ユーザー名</th>
+        <th>お気に入りしたイベントタイトル</th>
+        <th>お気に入りしたイベント本文</th>
+      </tr>
+      <tr>
+        <td class="index_favorite_event"><%=favorites_event.user.name %></td>
+        <td class="index_favorite_event user_img"><%= image_tag favorites_event.user.icon_image %></td>
+        <td class="index_favorite_event"><%=link_to favorites_event.title , event_url %></td>
+        <td class="index_favorite_event"><%= favorites_event.content %></td>
+      </tr>
+    <% end %>
+  <% end %>
+  </div>
+  </table>
+</div>
+  
+ <br></br>
+ 
+<div>
+ <table class=" table-hover" border="1">
+ <h3>参加イベント一覧</h3>
+ <% if !@joins_events.nil? %>
+    <% @joins_events.each do |joins_event| %>
+    <div class="text-center">
+      <tr>
+        <th colspan="2">ユーザー名</th>
+        <th>参加するイベントタイトル</th>
+        <th>参加するイベント本文</th>
+      </tr>
+      <tr>
+        <td class="index_favorite_event">ユーザー名:<%=joins_event.user.name %></td>
+        <td class="index_favorite_event user_img"><%= image_tag joins_event.user.icon_image %></td>
+        <td class="index_favorite_event">タイトル:<%=link_to joins_event.title , event_url %></td>
+        <td class="index_favorite_event">本文:<%= joins_event.content %></td>
+      </tr>
+    <% end %>
+  <% end %>
+  </div>
+  </table>
+</div>
+  
+</div>
+</div>

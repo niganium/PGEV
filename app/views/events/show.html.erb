@@ -1,0 +1,80 @@
+<div class="row container">
+  <div class="col-xs-6 media">
+    <div class="media-left user_img">
+      <%= image_tag @event.user.icon_image %>
+      <div class="media-body">
+      <h1 class="media-heading">
+        <%= link_to @event.user.name , user_path(current_user.id)%>
+      </h1>
+      </div>
+    </div>
+    <%= image_tag @event.image %>
+    <div class="media-body">
+    <h2>
+      イベントタイトル:
+      <%= @event.title %>
+    </h2>
+    <h3>
+      本文:
+      <%= @event.content %>
+    </h3>
+    <h3>
+      地名:
+      <%= @event.area %>
+    </h3>
+    <h4>
+      タグ:
+      <%= @event.etag_list %>
+    </h4>
+    <h4>
+      参加人数:
+      <%= @event.joins.count %>
+    </h4>
+    <h4>
+      お気に入り数:
+      <%= @event.favorites.count %>
+    </h4>
+    </div>
+  </div>
+  
+  <div class="col-xs-6">
+  <h1>コメント一覧</h1>
+  <% @comments.each do |comment| %>
+    <div class="comment_index_item">
+      <strong><%= comment.user.name %></strong>
+      <br />
+      <h4><%= comment.body %></h4>
+      <p><%= comment.created_at%></p>
+      <% if comment.user == current_user %>
+        <p><%= link_to 'Delete', comment_path(comment), method: :delete %></p>
+      <% end %>
+    </div>
+  <% end %>
+  <% if logged_in? %>
+    <%= render 'comments/form' %>
+  <% end %>
+  </div>
+    
+    <% if @event.user == current_user %>
+        <%= link_to '編集', edit_event_path(@event.id), class: 'far fa-edit' %>
+        <%= link_to '削除', event_path(@event.id), method: :delete,
+        data: { confirm: '本当に削除していいですか？' }, class: 'far fa-trash-alt'%>
+    <% end %>
+    
+    <% unless @event.user == current_user %>
+      <% if @join.present? %>
+          <%= link_to 'キャンセルする', join_path(event_id: @event.id), method: :delete%>
+      <% else %>
+          <%= link_to '参加する', joins_path(event_id: @event.id), method: :post%>
+      <% end %>
+    <% end %>
+
+
+    <% unless @event.user == current_user %>
+      <% if @favorite.present? %>
+          <%= link_to 'お気に入り解除', favorite_path(event_id: @event.id), method: :delete%>
+      <% else %>
+          <%= link_to 'お気に入り', favorites_path(event_id: @event.id), method: :post%>
+      <% end %>
+    <% end %>
+</div>

@@ -1,0 +1,67 @@
+<div>
+<h1>Products</h1>
+<p>空白で検索すると一覧が表示されます</p>
+
+
+<%= search_form_for @q do |f| %>
+  <%= f.label :title_cont,"イベント名" %>
+  <%= f.search_field :title_cont %>
+  <%= f.label :area_cont,"地名" %>
+  <%= f.search_field :area_cont %>
+  <%= button_tag :type => "submit", :class =>"btn btn-default btn-s-md" do %>
+  <i class="fa fa-search"></i>検索
+<% end %>
+
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= sort_link(@q, :NAME) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td>ユーザー名:<%= link_to event.user.name  , user_path(current_user.id)%></td>
+        <td>タイトル:<%= link_to event.title , event_path(event.id)%></td>
+        <td>地名:<%= event.area %></td>
+        <td>タグ:<%= event.etag_list %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<div class="row container">
+<% @events.each do |event| %>
+<div class="text-cente events-index-item cl-xs-9 cl-xs-pull-1 media"
+style=" height:250px; background:white;">
+      
+            <div class="e_user_img media-left">
+              <%= image_tag event.user.icon_image %>
+            </div>
+            
+            <div class="media-body">
+              <div class="e-user-name">
+                <h1>
+                <%= link_to event.user.name , user_path(current_user.id)%>
+                </h1>
+              </div>
+              <div class="e_area">
+                <h3>
+                <%= event.area %>
+                </h3>
+              </div>
+              <div class="e_title">
+                <h2>
+                <%= link_to event.title , event_path(event.id)%>
+                </h2>
+              </div>
+            </div>
+            
+          </tr>
+      </table>
+</div>     
+<% end %>
+</div>     

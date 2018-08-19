@@ -1,0 +1,31 @@
+<div class="text-center">
+<h3>以下の内容で、送信する。</h3>
+
+<%= form_with(model: @event, url: events_path, local: true) do |form| %>
+  <%= form.hidden_field :title %>
+  <%= form.hidden_field :content %>
+  <%= form.hidden_field :area %>
+  <%= form.hidden_field :etag_list %>
+  <%= hidden_field_tag :"cache[image]",@event.image.cache_name %>
+  
+  <p>タイトル:<%= @event.title %></p>
+  <p>本文:<%= @event.content %></p>
+  <p>地名:<%= @event.area %></p>
+  <p>タグ:<%= @event.etag_list %></p>
+
+ 
+  <p>
+    <%= image_tag(@event.image.url) %>
+  </p>
+  <%= form.submit  "投稿する" %>
+<% end %>
+
+<%= form_with(model: @event, url: new_event_path, local: true, method: 'get') do |form| %>
+  <%= form.hidden_field :title %>
+  <%= form.hidden_field :content %>
+  <%= form.hidden_field :area %>
+  <%= form.hidden_field :etag_list %>
+  <%= hidden_field_tag :"cache[image]",@event.image.cache_name %>
+  <%= form.submit "もどる", name: 'back' %>
+<% end %>
+</div>

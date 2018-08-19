@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PGEV</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
+  </head>
+
+  <body style="background:#CEECF5;" class="container">
+     
+    <nav class="navbar navbar-default"  style ="height:90px; background:white;">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#gnavi">
+            <span class="sr-only">Blog</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+           <a class="navbar-brand lglogo" href="/">
+            <img src="assets/LOGO.PNG" width="80" height="72">
+          </a>
+         
+        </div>
+        
+        <div id="gnavi" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <% if logged_in? %>
+            <li><a href="/events">
+              <i class="fas fa-users fa-2x"></i>
+              <p>一覧</p>
+            </a></li>
+            <li>
+              <a href="/events/new">
+                <i class="fas fa-plus fa-2x"></i>
+                <p>新規</p>
+              </a>
+            </li>
+            <% else %>
+            <% end %>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <% if logged_in? %>
+              <li class="login_tag">
+                <%= link_to user_path(current_user.id) do %>
+                  <i class="fas fa-user-circle fa-2x">
+                  </i>
+                <% end %>
+              </li>
+              
+              
+                <%= render 'notifications/notification_dropdown' %> 
+                 
+              
+              <li class="login_tag">
+                <%= link_to session_path(current_user.id), method: :delete do %>
+                  <i class="fas fa-sign-out-alt fa-2x">Logout</i>
+                <% end %>
+              </li>
+              
+            <% else %>
+              <li class="login_tag">
+                <%= link_to  new_user_path do %>
+                  <i class="fas fa-sign-in-alt fa-2x">
+                    <p>登録</p>
+                  </i>
+                <% end %>
+              </li>
+              <li class="login_tag">
+                <%= link_to  new_session_path do %>
+                  <i class="fas fa-key fa-2x">
+                     <p>ログイン</p>
+                  </i>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "#{key}") %>
+    <% end %>
+    
+   
+    
+    <%= yield %>
+ 
+    <footer class="text-center">
+        <a href="/contacts/new">
+          <i class="fas fa-question-circle fa-2x">Contact</i>
+        </a>
+    </footer>
+  </body>
+
+</html>

@@ -1,0 +1,124 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require bootstrap/dist/css/bootstrap.min
+ *= require_tree .
+ *= require_self
+ */
+
+html{
+   height:100%;
+   overflow: hidden;
+}
+
+body{
+    margin:0;
+    padding:0;
+    perspective: 1px;
+    transform-style: preserve-3d;
+    height:100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+header{
+    box-sizing: border-box;
+    min-height: 100vh;
+    padding:30vw 0 5vw;
+    position: relative;
+    transform-style: inhermit;
+    width:100vw;
+    color: white;
+}
+
+header h1{
+    margin-top: -100px;
+}
+
+header,header:before{
+    background: 50% 50% /cover;
+}
+
+header:before{
+    bottom:0;
+    content:"";
+    left:0;
+    position: absolute;
+    right: 0;
+    top:0;
+    display: block;
+    background-image:url(/assets/BG.jpg) ;
+    background-size: cover;
+    transform-origin: center center 0;
+    transform: translateZ(-1px) scale(2);
+    z-index: -1;
+    min-height: 100vh;
+}
+
+header *{
+    font-weight: normal;
+    letter-spacing: 0.2em;
+    text-align: center;
+    margin: 0;
+    padding: 1em 0;
+}
+
+.container {
+        position: relative;
+        width: 100%;
+        height: auto;
+        height: 100%;
+        min-height: 100%;
+    }
+
+footer {
+  bottom: -10;
+  height: 5em;
+  position: absolute;
+  width: 100%;
+  border-color: #e7e7e7;
+  border-width: 1px 0px 0px;
+}
+    
+    
+.container {
+        position: relative;
+        width: 100%;
+        height: auto;
+        height: 100%;
+        min-height: 100%;
+    }
+    
+.tops{
+    font-family:  'Courgette', cursive;
+}
+
+input[type="text"] {
+        width: 300px;
+        height: 40px;
+    }
+
+input[type="password"] {
+        width: 300px;
+        height: 40px;
+    }
+
+
+input[type="text_area"] {
+        width: 300px;
+        height: 40px;
+    }
+
+
+input[type="file"] {
+        text-align: center
+    }

@@ -1,0 +1,8 @@
+    <%= search_form_for @search do |f| %>
+      <%= f.label :title, "イベント名" %>
+      <%= f.search_field :title%>
+      <br>
+      <%= f.label :area, "地名" %>
+      <%= f.search_field :area %>
+      <div class="actions"><%= f.submit "Search" %></div>
+    <% end %>
