@@ -65,20 +65,30 @@
       </h4>
     <% end %>
     
+    <div class="col-xs-6 media">
     <% unless @event.user == current_user %>
       <% if @join.present? %>
+      <h2>
           <%= link_to 'キャンセルする', join_path(event_id: @event.id), method: :delete%>
+      </h2>
       <% else %>
+      <h2>
           <%= link_to '参加する', joins_path(event_id: @event.id), method: :post%>
+      </h2>
       <% end %>
     <% end %>
 
 
     <% unless @event.user == current_user %>
       <% if @favorite.present? %>
+      <h2>
           <%= link_to 'お気に入り解除', favorite_path(event_id: @event.id), method: :delete%>
+      </h2>
       <% else %>
+      <h2>
           <%= link_to 'お気に入り', favorites_path(event_id: @event.id), method: :post%>
+      </h2>
       <% end %>
     <% end %>
+  </div>
 </div>
