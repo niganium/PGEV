@@ -8,8 +8,8 @@ class CommentsController < ApplicationController
 
   # GET /comments/1
   # GET /comments/1.json
-  def show
-  end
+  #def show
+  #end
 
   # GET /comments/new
   def new
@@ -27,7 +27,7 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+        format.html { redirect_to events_path, notice: 'コメントが完了しました！！' }
         format.json { render :show, status: :created, location: @comment }
       else
         format.html { render :new }

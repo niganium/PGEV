@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   
-  get 'notifications/link_through'
 
   resources :comments
   
@@ -32,6 +31,4 @@ Rails.application.routes.draw do
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
-  get 'notifications/:id/link_through', to: 'notifications#link_through',
-  as: :link_through
 end
